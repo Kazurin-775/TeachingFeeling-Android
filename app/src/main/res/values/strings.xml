@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Teaching Feeling</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="confirm_return_to_title">Are you sure you want to return to the title screen?\nAny unsaved progress will be lost.</string>
+</resources>
