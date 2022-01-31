@@ -58,6 +58,12 @@ public class MainActivity extends Activity {
         MyJavaScriptInterface obj = new MyJavaScriptInterface(this);
         webView.addJavascriptInterface(obj, "appJsInterface");
 
+        try {
+            webView.setWebViewClient(new TyranoWebViewClient(this));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
@@ -69,6 +75,7 @@ public class MainActivity extends Activity {
         });
 
         // Don't forget to inject tyrano_player.js at the bottom of <head>
+        webView.loadUrl(TyranoWebViewClient.URL_PREFIX + "index.html");
     }
 
     @Override
