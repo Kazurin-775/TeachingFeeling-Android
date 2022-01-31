@@ -21,9 +21,11 @@ public class TyranoWebViewClient extends WebViewClient {
     private static final String LOG_TAG = "TeachingFeeling";
     private static final String DEFAULT_MIME_TYPE = "text/plain";
 
+    private Context context;
     private ArrayList<ZipFile> packages = new ArrayList<>();
 
     public TyranoWebViewClient(Context context) throws IOException {
+        this.context = context;
         File assetsDir = context.getExternalFilesDir(null);
         tryAddAssetPackage(new File(assetsDir, "app.zip"));
         tryAddAssetPackage(new File(assetsDir, "patch.zip"));
@@ -65,7 +67,10 @@ public class TyranoWebViewClient extends WebViewClient {
 
         // 404 Not Found
         Log.w(LOG_TAG, "Load " + path + ": not found");
-        WebResourceResponse response = new WebResourceResponse(null, null, null);
+        WebResourceResponse response = url.endsWith(".html") ?
+                new WebResourceResponse("text/html", "UTF-8",
+                        context.getResources().openRawResource(R.raw.not_found)) :
+                new WebResourceResponse(null, null, null);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             response.setStatusCodeAndReasonPhrase(404, "Not Found");
         }
