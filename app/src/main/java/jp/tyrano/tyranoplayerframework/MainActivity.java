@@ -48,12 +48,14 @@ public class MainActivity extends Activity {
         WebSettings settings = webView.getSettings();
         settings.setUserAgentString(settings.getUserAgentString() + ";tyranoplayer-android-1.0");
         settings.setJavaScriptEnabled(true);
-        settings.setAllowFileAccessFromFileURLs(true);
-        settings.setAllowUniversalAccessFromFileURLs(true);
-        settings.setDomStorageEnabled(true);
+        settings.setAllowFileAccessFromFileURLs(false);
+        settings.setAllowUniversalAccessFromFileURLs(false);
+        settings.setAllowFileAccess(false);
+        settings.setAllowContentAccess(false);
+        settings.setDomStorageEnabled(false);
         settings.setMediaPlaybackRequiresUserGesture(false);
         settings.setUseWideViewPort(true);
-        webView.clearCache(true);
+        // webView.clearCache(true);
 
         MyJavaScriptInterface obj = new MyJavaScriptInterface(this);
         webView.addJavascriptInterface(obj, "appJsInterface");
