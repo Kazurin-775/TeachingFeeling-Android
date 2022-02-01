@@ -49,6 +49,7 @@ public class TyranoWebViewClient extends WebViewClient {
                 return new WebResourceResponse(null, null, null);
             }
         }
+        Log.w(LOG_TAG, "Passing-through unknown URL " + url);
         return super.shouldInterceptRequest(view, url);
     }
 
