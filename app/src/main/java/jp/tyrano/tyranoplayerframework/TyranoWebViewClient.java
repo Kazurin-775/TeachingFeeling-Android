@@ -27,8 +27,8 @@ public class TyranoWebViewClient extends WebViewClient {
     public TyranoWebViewClient(Context context) throws IOException {
         this.context = context;
         File assetsDir = context.getExternalFilesDir(null);
-        tryAddAssetPackage(new File(assetsDir, "app.zip"));
         tryAddAssetPackage(new File(assetsDir, "patch.zip"));
+        tryAddAssetPackage(new File(assetsDir, "app.zip"));
     }
 
     private void tryAddAssetPackage(File file) throws IOException {
